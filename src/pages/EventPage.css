@@ -1,0 +1,88 @@
+/* src/pages/EventPage/EventPage.css */
+
+.event-page-container {
+    padding: 2.5rem 1.5rem; /* Tăng padding trên dưới */
+    max-width: 1200px; /* Giới hạn chiều rộng nội dung */
+    margin: 0 auto; /* Căn giữa trang */
+    min-height: calc(100vh - 120px); /* Chiều cao tối thiểu để đẩy footer xuống (giả sử header cao ~120px) */
+    background-color: #f8f9fa; /* Màu nền nhẹ cho trang */
+  }
+  
+  .event-page-title {
+    font-size: 2rem; /* Cỡ chữ lớn cho tiêu đề trang */
+    font-weight: 600; /* Semibold */
+    color: #3f4096; /* Màu chủ đạo */
+    margin-top: 0;
+    margin-bottom: 2.5rem; /* Khoảng cách lớn dưới tiêu đề */
+    text-align: center; /* Căn giữa tiêu đề */
+    border-bottom: 2px solid #e0e0ff; /* Đường kẻ nhạt màu chủ đạo */
+    padding-bottom: 1rem; /* Khoảng cách từ chữ đến đường kẻ */
+    letter-spacing: 0.5px; /* Giãn nhẹ chữ */
+  }
+  
+  /* Container lưới chứa các card sự kiện */
+  .event-list-container {
+    display: grid;
+    /* Mặc định 3 cột, tối thiểu 300px, tối đa 1 phần (1fr) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; /* Khoảng cách lớn giữa các card */
+  }
+  
+  /* Styling cho thông báo loading và không có sự kiện */
+  .loading-message,
+  .error-message-page {
+    text-align: center;
+    font-size: 1.1rem; /* Cỡ chữ thông báo */
+    color: #6c757d; /* Màu xám */
+    padding: 4rem 1rem; /* Padding lớn để nổi bật */
+    min-height: 200px; /* Chiều cao tối thiểu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Styling riêng cho thông báo lỗi */
+  .error-message-page {
+    color: #dc3545; /* Màu đỏ cho lỗi */
+    font-weight: 500;
+  }
+  
+  /* Responsive adjustments */
+  
+  /* Tablet - Chuyển sang tối đa 2 cột */
+  @media (max-width: 992px) {
+    .event-list-container {
+      /* Vẫn giữ auto-fit nhưng có thể giới hạn tối đa 2 cột nếu cần */
+      /* grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); */
+       grid-template-columns: repeat(2, 1fr); /* Hoặc ép buộc 2 cột */
+       gap: 1.5rem; /* Giảm khoảng cách */
+    }
+    .event-page-title {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+    }
+     .event-page-container {
+       padding: 2rem 1rem;
+     }
+  }
+  
+  /* Mobile - Chuyển sang 1 cột */
+  @media (max-width: 600px) {
+    .event-list-container {
+      grid-template-columns: 1fr; /* Chỉ 1 cột */
+      gap: 1.5rem;
+    }
+    .event-page-title {
+      font-size: 1.6rem; /* Giảm cỡ chữ tiêu đề */
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+    }
+     .event-page-container {
+       padding: 1.5rem 1rem;
+     }
+     .loading-message,
+     .error-message-page {
+         font-size: 1rem;
+         padding: 3rem 0.5rem;
+     }
+  }

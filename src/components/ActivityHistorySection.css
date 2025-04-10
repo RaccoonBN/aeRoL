@@ -1,0 +1,146 @@
+/* src/components/ActivityHistorySection.css */
+
+.activity-history-section {
+    background-color: #ffffff;
+    padding: 1.5rem 2rem; /* Padding bên trong section */
+    border-radius: 0.75rem; /* Bo góc */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07); /* Shadow nhẹ */
+    margin-top: 2rem; /* Khoảng cách với section phía trên */
+  }
+  
+  .activity-history-section h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem; /* Khoảng cách dưới tiêu đề */
+    font-size: 1.25rem; /* Kích thước tiêu đề */
+    color: #343a40; /* Màu chữ tiêu đề */
+    font-weight: 600; /* Độ đậm */
+    border-bottom: 1px solid #e9ecef; /* Đường kẻ dưới tiêu đề */
+    padding-bottom: 0.75rem; /* Khoảng cách từ chữ đến đường kẻ */
+  }
+  
+  .history-list {
+    list-style: none; /* Bỏ dấu chấm đầu dòng */
+    padding: 0;
+    margin: 0;
+    max-height: 300px; /* Giới hạn chiều cao và thêm scroll nếu cần */
+    overflow-y: auto; /* Thêm thanh cuộn dọc khi nội dung vượt quá */
+    /* Tùy chỉnh thanh cuộn (cho trình duyệt Webkit như Chrome, Safari) */
+    &::-webkit-scrollbar {
+      width: 6px; /* Độ rộng thanh cuộn */
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f3f5; /* Màu nền rãnh cuộn */
+      border-radius: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #adb5bd; /* Màu của thanh cuộn */
+      border-radius: 3px;
+      border: 1px solid #f1f3f5; /* Viền nhỏ quanh thanh cuộn */
+    }
+     &::-webkit-scrollbar-thumb:hover {
+      background-color: #6c757d; /* Màu khi hover */
+    }
+  }
+  
+  .history-item {
+    display: flex;
+    align-items: baseline; /* Căn các dòng text theo baseline */
+    padding: 0.9rem 0.5rem; /* Padding trên dưới và trái phải cho mỗi item */
+    border-bottom: 1px solid #f1f3f5; /* Đường kẻ phân cách mờ */
+    font-size: 0.95rem; /* Kích thước chữ chung */
+    transition: background-color 0.15s ease; /* Hiệu ứng hover nhẹ */
+  }
+  
+  .history-item:last-child {
+    border-bottom: none; /* Bỏ đường kẻ cho item cuối cùng */
+  }
+  
+  .history-item:hover {
+      background-color: #f8f9fa; /* Màu nền nhẹ khi hover */
+  }
+  
+  .history-date {
+    color: #6c757d; /* Màu chữ cho ngày tháng */
+    font-size: 0.85rem; /* Cỡ chữ nhỏ hơn */
+    min-width: 95px; /* Đảm bảo độ rộng tối thiểu để thẳng hàng */
+    margin-right: 1.5rem; /* Khoảng cách với phần trạng thái */
+    flex-shrink: 0; /* Không co lại */
+  }
+  
+  .history-status {
+    margin-right: 1rem; /* Khoảng cách với tên sự kiện */
+    font-weight: 500; /* Độ đậm vừa phải */
+    padding: 0.25rem 0.6rem; /* Padding bên trong tag trạng thái */
+    border-radius: 0.25rem; /* Bo góc nhẹ */
+    font-size: 0.8rem; /* Cỡ chữ nhỏ */
+    white-space: nowrap; /* Không xuống dòng */
+    text-transform: uppercase; /* Viết hoa chữ */
+    letter-spacing: 0.03em;
+    line-height: 1.2; /* Đảm bảo chiều cao ổn định */
+    text-align: center;
+    min-width: 90px; /* Đảm bảo độ rộng tối thiểu */
+  }
+  
+  /* Màu sắc cho từng trạng thái */
+  .history-status.status-attended { /* Class được thêm bởi hàm getStatusClass */
+    color: #0f5132; /* Màu chữ xanh lá */
+    background-color: #d1e7dd; /* Màu nền xanh lá nhạt */
+    border: 1px solid #badbcc; /* Viền nhạt */
+  }
+  
+  .history-status.status-absent { /* Class được thêm bởi hàm getStatusClass */
+    color: #842029; /* Màu chữ đỏ */
+    background-color: #f8d7da; /* Màu nền đỏ nhạt */
+    border: 1px solid #f5c2c7; /* Viền nhạt */
+  }
+  
+  .history-status.status-unknown { /* Trạng thái mặc định nếu có */
+      color: #495057;
+      background-color: #e9ecef;
+      border: 1px solid #dee2e6;
+  }
+  
+  
+  .history-event-name {
+    color: #343a40; /* Màu chữ cho tên sự kiện */
+    line-height: 1.4; /* Đảm bảo dễ đọc nếu tên dài */
+    /* Không cần flex-grow: 1 vì flex container sẽ tự động co giãn */
+  }
+  
+  .no-history-message {
+      text-align: center;
+      color: #6c757d;
+      padding: 2rem 0;
+      font-style: italic;
+  }
+  
+  /* Responsive adjustments (Tùy chọn) */
+  @media (max-width: 600px) {
+      .activity-history-section {
+          padding: 1rem 1.25rem;
+      }
+      .activity-history-section h3 {
+          font-size: 1.1rem;
+          margin-bottom: 1rem;
+          padding-bottom: 0.5rem;
+      }
+      .history-item {
+          font-size: 0.9rem;
+          padding: 0.7rem 0.25rem;
+          flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+      }
+      .history-date {
+          min-width: 80px;
+          margin-right: 1rem;
+          margin-bottom: 0.25rem; /* Thêm khoảng cách nếu xuống dòng */
+          flex-basis: 100%; /* Ngày chiếm cả dòng đầu nếu xuống dòng (tùy chọn) */
+          text-align: left; /* Căn trái ngày */
+      }
+      .history-status {
+          margin-right: 0.75rem;
+          margin-bottom: 0.25rem; /* Thêm khoảng cách nếu xuống dòng */
+      }
+      .history-event-name {
+          flex-basis: 100%; /* Tên sự kiện chiếm dòng dưới nếu cần */
+      }
+  }

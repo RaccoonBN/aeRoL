@@ -1,0 +1,36 @@
+/* src/pages/HomePage/HomePage.css */
+
+/* Container chính cho toàn bộ nội dung trang Home */
+.home-page-container {
+    padding: 2rem 1.5rem; /* Padding trên/dưới và trái/phải */
+    max-width: 1200px; /* Giới hạn chiều rộng tối đa của nội dung */
+    margin: 0 auto; /* Căn giữa container trên màn hình */
+    min-height: calc(100vh - 120px); /* Chiều cao tối thiểu (trừ đi chiều cao ước tính của Header) */
+    /* background-color: #f8f9fa; */ /* Bỏ comment nếu muốn nền trang Home khác màu body */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng */
+  }
+  
+  /*
+     Lưu ý: Các thành phần con (StudentInfoSection, ActivitySummarySection, ActivityHistorySection)
+     đã có margin-bottom hoặc margin-top trong file CSS riêng của chúng để tạo khoảng cách.
+     Nếu bạn muốn kiểm soát khoảng cách chung từ HomePage.css, bạn có thể dùng cách sau (nhưng thường không cần thiết):
+  */
+  /*
+  .home-page-container > section + section {
+    margin-top: 2rem; // Thêm khoảng cách giữa các section con
+  }
+  */
+  
+  
+  /* Responsive adjustments cho layout chính của trang Home (nếu cần) */
+  @media (max-width: 768px) {
+    .home-page-container {
+      padding: 1.5rem 1rem; /* Giảm padding trên màn hình nhỏ hơn */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .home-page-container {
+      padding: 1rem 0.75rem; /* Giảm padding hơn nữa trên mobile */
+    }
+  }

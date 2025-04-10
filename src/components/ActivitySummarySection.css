@@ -1,0 +1,84 @@
+/* src/components/ActivitySummarySection.css */
+
+.activity-summary-section {
+    margin-bottom: 2rem; /* Khoảng cách dưới section */
+    margin-top: 2rem; /* Khoảng cách trên section */
+  }
+  
+  /* Container cho các card */
+  .summary-cards-container {
+    display: grid;
+    /* Mặc định 2 cột bằng nhau */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem; /* Khoảng cách giữa 2 card */
+  }
+  
+  /* Style chung cho mỗi card */
+  .summary-card {
+    background-color: #ffffff; /* Nền trắng */
+    padding: 1.75rem 1.5rem; /* Padding bên trong card */
+    border-radius: 0.75rem; /* Bo góc */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Shadow nhẹ */
+    text-align: center; /* Căn giữa nội dung */
+    border-left: 6px solid; /* Viền trái dày */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Hiệu ứng hover */
+  }
+  
+  .summary-card:hover {
+      transform: translateY(-4px); /* Nhấc card lên nhẹ khi hover */
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Shadow đậm hơn khi hover */
+  }
+  
+  
+  /* Style riêng cho card Ngày rèn luyện */
+  .summary-card.training-card {
+    border-left-color: #3f4096; /* Màu chủ đạo cho viền */
+  }
+  .summary-card.training-card .count {
+    color: #3f4096; /* Màu chủ đạo cho số */
+  }
+  
+  /* Style riêng cho card Ngày tình nguyện */
+  .summary-card.volunteer-card {
+    border-left-color: #198754; /* Màu xanh lá cho viền */
+  }
+  .summary-card.volunteer-card .count {
+    color: #198754; /* Màu xanh lá cho số */
+  }
+  
+  
+  /* Style cho số ngày (phần chính) */
+  .summary-card .count {
+    font-size: 2.8rem; /* Kích thước số lớn */
+    font-weight: 700; /* Đậm */
+    margin-bottom: 0.5rem; /* Khoảng cách dưới số */
+    line-height: 1.1; /* Chiều cao dòng */
+    display: block; /* Đảm bảo là block element */
+  }
+  
+  /* Style cho nhãn (phần mô tả) */
+  .summary-card .label {
+    font-size: 1rem; /* Kích thước nhãn */
+    color: #495057; /* Màu chữ xám đậm */
+    font-weight: 500; /* Độ đậm vừa */
+  }
+  
+  /* Responsive: Trên màn hình nhỏ, xếp thành 1 cột */
+  @media (max-width: 600px) {
+    .summary-cards-container {
+      grid-template-columns: 1fr; /* Chuyển thành 1 cột */
+      gap: 1rem; /* Giảm khoảng cách */
+    }
+  
+    .summary-card {
+      padding: 1.5rem 1.25rem; /* Giảm padding */
+    }
+  
+    .summary-card .count {
+      font-size: 2.4rem; /* Giảm cỡ chữ số */
+    }
+  
+    .summary-card .label {
+      font-size: 0.9rem; /* Giảm cỡ chữ nhãn */
+    }
+  }

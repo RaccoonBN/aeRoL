@@ -1,0 +1,115 @@
+/* src/components/EventCard/EventCard.css */
+
+.event-card {
+    background-color: #ffffff; /* Nền trắng */
+    border-radius: 0.75rem; /* Bo góc */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Shadow */
+    overflow: hidden; /* Cắt phần thừa (quan trọng cho ảnh) */
+    display: flex; /* Dùng flexbox cho layout */
+    flex-direction: column; /* Các phần tử xếp chồng lên nhau */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Hiệu ứng hover */
+    height: 100%; /* Để card trong grid có chiều cao bằng nhau nếu cần */
+  }
+  
+  .event-card:hover {
+      transform: translateY(-5px); /* Nhấc lên khi hover */
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); /* Shadow đậm hơn */
+  }
+  
+  .event-card-image {
+    width: 100%; /* Chiếm hết chiều rộng */
+    height: 200px; /* Chiều cao cố định cho ảnh */
+    object-fit: cover; /* Crop ảnh để vừa khung, giữ tỉ lệ */
+    display: block; /* Bỏ khoảng trắng thừa dưới ảnh */
+    background-color: #f8f9fa; /* Màu nền nhẹ phòng khi ảnh lỗi */
+  }
+  
+  .event-card-content {
+    padding: 1.25rem; /* Padding cho nội dung text */
+    display: flex;
+    flex-direction: column; /* Nội dung xếp dọc */
+    flex-grow: 1; /* Quan trọng: để phần content này giãn ra chiếm hết không gian còn lại, đẩy nút xuống dưới */
+  }
+  
+  .event-card-title {
+    font-size: 1.2rem; /* Cỡ chữ tiêu đề */
+    font-weight: 600; /* Semibold */
+    color: #343a40; /* Màu chữ tiêu đề */
+    margin-top: 0;
+    margin-bottom: 0.8rem; /* Khoảng cách dưới tiêu đề */
+    line-height: 1.4; /* Chiều cao dòng */
+  
+    /* Giới hạn 2 dòng chữ và thêm dấu ... */
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Số dòng tối đa */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Đặt chiều cao tối thiểu để giữ layout ổn định ngay cả khi title ngắn */
+    min-height: calc(1.2rem * 1.4 * 2); /* font-size * line-height * số dòng */
+  }
+  
+  .event-card-details {
+    font-size: 0.875rem; /* Cỡ chữ cho chi tiết */
+    color: #495057; /* Màu chữ xám đậm */
+    margin-bottom: 1.25rem; /* Khoảng cách trước nút */
+    /* flex-grow: 1; */ /* Không cần thiết ở đây nữa vì .event-card-content đã có */
+  }
+  
+  .event-card-details p {
+    margin: 0.6rem 0; /* Khoảng cách giữa các dòng chi tiết */
+    display: flex; /* Căn icon và text trên cùng dòng */
+    align-items: flex-start; /* Căn icon lên đầu nếu text dài */
+    line-height: 1.5; /* Giãn dòng cho dễ đọc */
+  }
+  
+  .event-card-details .detail-icon {
+     margin-right: 0.6rem; /* Khoảng cách giữa icon và text */
+     color: #3f4096; /* Màu icon (màu chủ đạo) */
+     font-size: 0.9em; /* Kích thước icon hơi nhỏ hơn text */
+     flex-shrink: 0; /* Ngăn icon bị co lại */
+     margin-top: 3px; /* Tinh chỉnh vị trí dọc của icon */
+     width: 1em; /* Đảm bảo icon có chiều rộng cố định */
+     text-align: center; /* Căn icon vào giữa nếu cần */
+  }
+  
+  .event-card-button {
+    background-color: #3f4096; /* Màu nền chủ đạo */
+    color: white; /* Chữ trắng */
+    border: none;
+    padding: 0.65rem 1.3rem; /* Padding nút */
+    border-radius: 0.375rem; /* Bo góc */
+    cursor: pointer;
+    font-weight: 500; /* Độ đậm vừa */
+    text-align: center;
+    transition: background-color 0.2s ease;
+    margin-top: auto; /* Quan trọng: Đẩy nút xuống dưới cùng của card */
+    align-self: center; /* Căn nút vào giữa theo chiều ngang */
+    /* width: fit-content; */ /* Bỏ dòng này nếu muốn nút rộng hơn */
+     width: auto; /* Để nút tự co giãn theo nội dung + padding */
+     min-width: 120px; /* Đặt chiều rộng tối thiểu nếu muốn */
+     display: inline-block; /* Để align-self hoạt động đúng */
+  }
+  
+  .event-card-button:hover {
+    background-color: #31327a; /* Màu đậm hơn khi hover */
+  }
+  
+  .event-card-button:disabled {
+      background-color: #adb5bd; /* Màu xám khi disabled */
+      cursor: not-allowed;
+  }
+  
+  /* Placeholder cho trường hợp không có event (tùy chọn) */
+  .event-card-placeholder {
+      border: 2px dashed #e0e0e0;
+      padding: 2rem;
+      text-align: center;
+      color: #adb5bd;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%; /* Chiếm hết chiều cao */
+      min-height: 300px; /* Chiều cao tối thiểu */
+  }

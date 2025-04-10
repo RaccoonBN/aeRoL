@@ -1,0 +1,398 @@
+/* src/components/Header/Header.css */
+
+/* --- Header Container --- */
+.header-container {
+    background-color: #ffffff; /* Nền trắng */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06); /* Shadow nhẹ */
+    position: sticky; /* Giữ header cố định khi cuộn */
+    top: 0;
+    left: 0;
+    width: 100%; /* Chiếm hết chiều rộng */
+    z-index: 1000; /* Đảm bảo header nằm trên */
+}
+
+/* --- Top Bar --- */
+.header-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo trái, tên giữa, icon phải */
+    padding: 0.6rem 1.5rem; /* Padding trên dưới và trái phải */
+    border-bottom: 1px solid #e9ecef; /* Đường kẻ phân cách */
+    height: 60px; /* Chiều cao cố định cho top bar */
+    box-sizing: border-box;
+}
+
+.header-logo-section {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Chiếm không gian bên trái */
+    justify-content: flex-start; /* Căn logo về bên trái */
+}
+
+.header-logo {
+    height: 40px; /* Kích thước logo */
+    width: auto;
+    display: block; /* Loại bỏ khoảng trắng thừa */
+}
+
+.header-app-name {
+    flex: 2; /* Chiếm nhiều không gian hơn ở giữa */
+    text-align: center; /* Căn giữa tên app */
+    font-size: 1.6rem; /* Cỡ chữ tên app */
+    font-weight: 700; /* Bold */
+    color: #3f4096; /* Màu chủ đạo */
+    /* Có thể thêm font chữ đặc biệt nếu muốn */
+    /* font-family: 'YourSpecialFont', sans-serif; */
+    letter-spacing: 0.5px;
+    /* Ngăn không cho tên app bị co lại quá nhiều */
+    min-width: 150px; /* Đặt chiều rộng tối thiểu nếu cần */
+}
+
+.header-icons-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Căn các icon về bên phải */
+    gap: 1rem; /* Khoảng cách vừa phải giữa các icon */
+    flex: 1; /* Chiếm không gian bên phải */
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.6rem; /* Padding quanh icon */
+    position: relative; /* Để định vị dropdown/popup/indicator */
+    color: #495057; /* Màu icon xám */
+    font-size: 1.4rem; /* Kích thước icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Bo tròn nền hover */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.icon-button:hover {
+    background-color: #f1f3f5; /* Nền hover nhạt */
+    color: #3f4096; /* Màu icon thành màu chủ đạo khi hover */
+}
+
+/* Chấm đỏ thông báo */
+.notification-indicator {
+    position: absolute;
+    top: 6px; /* Điều chỉnh vị trí */
+    right: 6px; /* Điều chỉnh vị trí */
+    width: 9px;
+    height: 9px;
+    background-color: #dc3545; /* Màu đỏ */
+    border-radius: 50%;
+    border: 1.5px solid white; /* Viền trắng để nổi bật */
+    /* Animation nhẹ (tùy chọn) */
+    /* animation: pulse 1.5s infinite ease-in-out; */
+}
+
+
+
+
+/* --- Nav Bar --- */
+.header-nav-bar {
+    display: flex;
+    justify-content: center; /* Căn giữa các link */
+    padding: 0.7rem 1.5rem; /* Padding trên dưới và trái phải */
+    background-color: #f8f9fa; /* Nền xám nhạt */
+    border-bottom: 1px solid #e0e0e0; /* Đường kẻ dưới nhẹ */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #495057; /* Màu chữ xám */
+    font-weight: 500; /* Semibold */
+    padding: 0.6rem 1.2rem; /* Padding cho mỗi link */
+    border-radius: 0.375rem; /* Bo góc nhẹ */
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    margin: 0 0.75rem; /* Khoảng cách giữa các link */
+    font-size: 0.95rem;
+    white-space: nowrap; /* Không xuống dòng */
+    position: relative; /* Cho hiệu ứng gạch chân */
+    overflow: hidden; /* Ẩn gạch chân ban đầu */
+}
+/* Hiệu ứng gạch chân dưới khi hover và active */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%; /* Bắt đầu từ giữa */
+    width: 0; /* Ban đầu không có chiều rộng */
+    height: 2px;
+    background-color: #3f4096; /* Màu chủ đạo */
+    transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%; /* Mở rộng ra 2 bên */
+    left: 0;
+}
+
+.nav-link:hover {
+    /* background-color: #e9ecef; */ /* Có thể bỏ nền hover nếu dùng gạch chân */
+    color: #3f4096; /* Chữ thành màu chủ đạo */
+}
+
+/* Style cho link đang active */
+.nav-link.active {
+    /* background-color: #3f4096; */ /* Bỏ nền active nếu dùng gạch chân */
+    color: #3f4096; /* Màu chữ chủ đạo */
+    font-weight: 600; /* Đậm hơn khi active */
+    /* box-shadow: 0 2px 4px rgba(63, 64, 150, 0.2); */ /* Bỏ shadow nếu dùng gạch chân */
+}
+
+
+/* --- User Dropdown & Notification Popup (Shared Styles) --- */
+.user-dropdown,
+.notification-popup {
+    position: absolute;
+    top: calc(100% + 8px); /* Khoảng cách dưới icon */
+    right: 0;
+    background-color: #ffffff;
+    border-radius: 0.5rem; /* Bo góc */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Shadow */
+    z-index: 1010;
+    border: 1px solid #dee2e6; /* Viền nhẹ */
+    overflow: hidden; /* Để bo góc hoạt động đúng */
+    opacity: 0; /* Mặc định ẩn */
+    transform: translateY(-10px); /* Hiệu ứng trượt xuống */
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+}
+
+/* Class 'open' được thêm/xóa bằng JS để hiển thị */
+.user-dropdown.open,
+.notification-popup.open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    /* transition-delay: 0s; */ /* Bỏ delay khi hiện */
+}
+
+
+/* --- User Dropdown --- */
+.user-dropdown {
+    min-width: 220px; /* Độ rộng tối thiểu */
+}
+
+.user-dropdown ul {
+    list-style: none;
+    padding: 0.5rem 0; /* Padding trên dưới cho list */
+    margin: 0;
+}
+
+.user-dropdown li a,
+.user-dropdown li button {
+    display: flex; /* Căn icon và text */
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1.25rem; /* Padding cho item */
+    color: #495057; /* Màu chữ */
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+/* Icon trong dropdown */
+.user-dropdown li svg {
+    margin-right: 0.75rem; /* Khoảng cách icon và text */
+    /* vertical-align: middle; */ /* Không cần khi dùng flex */
+    opacity: 0.8; /* Giảm độ chói của icon */
+    font-size: 1em; /* Kích thước icon bằng text */
+    flex-shrink: 0; /* Không co icon */
+}
+
+
+.user-dropdown li a:hover,
+.user-dropdown li button:hover {
+    background-color: #f1f3f5; /* Nền hover */
+    color: #3f4096; /* Màu chữ hover */
+}
+/* Style riêng cho nút Đăng xuất */
+.user-dropdown li button[onClick*="Logout"] {
+    color: #dc3545; /* Màu đỏ */
+}
+.user-dropdown li button[onClick*="Logout"]:hover {
+    background-color: #f8d7da; /* Nền đỏ nhạt */
+    color: #842029; /* Đỏ đậm */
+}
+
+
+/* --- Notification Popup --- */
+.notification-popup {
+    width: 360px; /* Độ rộng popup */
+    max-height: 450px; /* Chiều cao tối đa */
+    overflow-y: auto; /* Thêm cuộn nếu cần */
+    /* Tùy chỉnh thanh cuộn */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #ced4da #f8f9fa; /* Firefox */
+}
+/* Webkit (Chrome, Safari) */
+.notification-popup::-webkit-scrollbar { width: 6px; }
+.notification-popup::-webkit-scrollbar-track { background: #f8f9fa; border-radius: 3px;}
+.notification-popup::-webkit-scrollbar-thumb { background-color: #ced4da; border-radius: 3px;}
+.notification-popup::-webkit-scrollbar-thumb:hover { background-color: #adb5bd; }
+
+
+.notification-popup-header {
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95rem;
+    color: #343a40;
+    background-color: #f8f9fa; /* Nền nhẹ cho header */
+    position: sticky; /* Giữ header popup cố định khi cuộn */
+    top: 0;
+    z-index: 1; /* Đảm bảo header nằm trên list */
+}
+.notification-popup-header button { /* Nút Đánh dấu đã đọc */
+    font-size: 0.8rem;
+    color: #3f4096;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease;
+}
+.notification-popup-header button:hover {
+    color: #31327a;
+    text-decoration: underline;
+}
+.notification-popup-header button:disabled {
+    color: #adb5bd;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-item {
+    padding: 0.9rem 1rem; /* Tăng padding */
+    border-bottom: 1px solid #f1f3f5; /* Đường kẻ nhạt */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: block; /* Đảm bảo là block */
+}
+.notification-item:last-child {
+    border-bottom: none;
+}
+.notification-item:hover {
+    background-color: #f8f9fa; /* Nền hover */
+}
+.notification-item.unread {
+    background-color: #eef0ff; /* Nền nhạt cho unread */
+    /* font-weight: 500; */ /* Bỏ đậm để tránh nhảy layout */
+}
+.notification-item.unread:hover {
+     background-color: #e6e8ff; /* Đậm hơn chút khi hover unread */
+}
+
+
+.notification-message {
+    font-size: 0.9rem; /* Cỡ chữ thông báo */
+    color: #495057;
+    margin-bottom: 0.3rem;
+    line-height: 1.45;
+
+}
+/* Style riêng cho cảnh báo */
+.notification-item.warning .notification-message {
+    color: #991b1b; /* Màu chữ đỏ đậm */
+    /* font-weight: 600; */ /* Bỏ đậm */
+}
+.notification-item.warning.unread {
+     background-color: #fef2f2; /* Nền đỏ rất nhạt */
+}
+.notification-item.warning.unread:hover {
+     background-color: #fee2e2;
+}
+
+
+.notification-date {
+    font-size: 0.75rem; /* Cỡ chữ ngày tháng */
+    color: #6c757d; /* Màu xám */
+}
+
+
+/* Responsive cho Header (Tùy chọn) */
+@media (max-width: 768px) {
+    .header-top-bar {
+        padding: 0.5rem 1rem; /* Giảm padding */
+        height: 55px; /* Giảm chiều cao */
+    }
+    .header-app-name {
+        font-size: 1.4rem; /* Giảm cỡ chữ tên app */
+        min-width: auto; /* Bỏ min-width */
+        flex: 1; /* Cho phép co lại */
+        margin: 0 0.5rem; /* Thêm margin nhỏ */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; /* Thêm ... nếu quá dài */
+    }
+     .header-logo {
+        height: 35px;
+    }
+    .header-icons-section {
+        gap: 0.5rem; /* Giảm khoảng cách icon */
+    }
+    .icon-button {
+        font-size: 1.3rem; /* Giảm cỡ icon */
+        padding: 0.5rem;
+    }
+    .notification-indicator {
+        top: 4px;
+        right: 4px;
+        width: 8px;
+        height: 8px;
+    }
+     .header-nav-bar {
+         padding: 0.6rem 1rem; /* Giảm padding */
+         justify-content: space-around; /* Phân bố đều link */
+         overflow-x: auto; /* Cho phép cuộn ngang nếu không đủ chỗ */
+     }
+     .nav-link {
+         margin: 0 0.25rem; /* Giảm margin */
+         padding: 0.5rem 0.8rem; /* Giảm padding link */
+         font-size: 0.9rem;
+     }
+     /* Ẩn gạch chân trên mobile nếu muốn */
+     /* .nav-link::after { display: none; } */
+
+     .notification-popup {
+         width: 90vw; /* Rộng hơn trên mobile */
+         max-width: 340px; /* Giới hạn độ rộng tối đa */
+     }
+}
+
+@media (max-width: 480px) {
+     .header-app-name {
+         font-size: 1.2rem; /* Nhỏ hơn nữa */
+     }
+     .header-logo {
+        height: 30px;
+    }
+      .icon-button {
+        font-size: 1.2rem;
+    }
+     .nav-link {
+         font-size: 0.85rem;
+         padding: 0.5rem 0.6rem;
+     }
+}

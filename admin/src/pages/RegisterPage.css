@@ -1,0 +1,193 @@
+/* AdminRegisterPage.css (hoặc tên file CSS bạn dùng) */
+
+/* --- Kế thừa hoặc định nghĩa lại các style chung --- */
+/* .auth-container, .auth-box, .logo-placeholder, .logo-image, h2, p, */
+/* .message-box, .error-message, .success-message, .close-button, */
+/* .input-with-icon, .input-icon, input, select, .helper-text, */
+/* .toggle-view, .link-button */
+/* Giữ lại các style này từ file CSS trước đó */
+
+/* --- Style chung cho Auth Box --- */
+.auth-box {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    /* Tăng max-width để chứa 2 cột */
+    max-width: 850px; /* Điều chỉnh nếu cần */
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  /* --- Bố cục 2 Cột --- */
+  .form-columns-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 30px; /* Khoảng cách giữa 2 cột */
+    margin-bottom: 20px; /* Khoảng cách trước nút submit */
+  }
+  
+  .form-column {
+    flex: 1; /* Mỗi cột chiếm không gian bằng nhau */
+    min-width: 280px; /* Chiều rộng tối thiểu trước khi xuống dòng */
+    display: flex;
+    flex-direction: column; /* Các input trong cột xếp dọc */
+  }
+  
+  /* Định dạng helper text trong cột cho nhất quán */
+  .form-column-helper {
+      margin-top: -10px; /* Điều chỉnh gần hơn với select phía trên */
+      margin-bottom: 18px; /* Giữ khoảng cách với phần tử dưới */
+      text-align: left;
+  }
+  
+  /* --- Khu vực Ảnh Đại Diện --- */
+  .profile-image-section {
+    display: flex;
+    align-items: center; /* Căn giữa ảnh và nút theo chiều dọc */
+    gap: 20px; /* Khoảng cách giữa ảnh và nút */
+    margin-top: 10px; /* Khoảng cách với select phía trên */
+    margin-bottom: 18px; /* Giống các input khác */
+    padding: 10px;
+    border: 1px dashed #ccc; /* Viền đứt nhẹ để phân biệt khu vực */
+    border-radius: 8px;
+    background-color: #f8f9fa; /* Nền nhẹ */
+  }
+  
+  .profile-image-preview-circle {
+    width: 80px;           /* Kích thước hình tròn */
+    height: 80px;
+    border-radius: 50%;    /* Bo tròn thành hình tròn */
+    object-fit: cover;     /* Đảm bảo ảnh vừa vặn mà không bị méo */
+    border: 2px solid #dee2e6; /* Viền nhẹ */
+    background-color: #e9ecef; /* Màu nền mặc định nếu chưa có ảnh */
+    flex-shrink: 0; /* Không co lại khi flex */
+    display: block;
+  }
+  
+  .profile-image-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Căn nút và text sang trái */
+  }
+  
+  .profile-image-button {
+    background-color: #f0f2f5; /* Màu nền nút chọn ảnh */
+    color: #3f4096;        /* Màu chữ theo accent color */
+    border: 1px solid #d0d3e0;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    display: inline-flex; /* Để icon và text thẳng hàng */
+    align-items: center;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  .profile-image-button:hover:not(:disabled) {
+    background-color: #e2e6ea;
+    border-color: #b9c0d4;
+  }
+  
+  .profile-image-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+  }
+  
+  .profile-image-hint {
+      font-size: 0.75em;
+      color: #6c757d; /* Màu text gợi ý */
+      margin-top: 5px;
+      margin-bottom: 0;
+      text-align: left;
+  }
+  
+  /* --- Input & Select (Giữ lại hoặc điều chỉnh từ CSS trước) --- */
+  .input-with-icon {
+    position: relative;
+    margin-bottom: 18px;
+    width: 100%;
+  }
+  
+  .input-icon {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #888; font-size: 0.9em;
+  }
+  
+  .auth-box input[type="text"],
+  .auth-box input[type="email"],
+  .auth-box input[type="password"],
+  .auth-box select {
+    width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; box-sizing: border-box; transition: border-color 0.2s ease;
+  }
+  .auth-box select { /* Style cơ bản cho select */ appearance: none; background-image: url("data:image/svg+xml,..."); background-repeat: no-repeat; background-position: right 15px center; background-size: 10px auto; padding-right: 40px; }
+  .auth-box input:focus,
+  .auth-box select:focus { outline: none; border-color: #3f4096; box-shadow: 0 0 0 2px rgba(63, 64, 150, 0.2); }
+  .auth-box input:disabled,
+  .auth-box select:disabled { background-color: #e9ecef; cursor: not-allowed; opacity: 0.7; }
+  
+  
+  /* --- Nút Submit (Sử dụng màu accent) --- */
+  .submit-button { /* Đổi tên class nếu cần */
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #3f4096; /* Màu accent */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    margin-top: 15px; /* Khoảng cách với form */
+  }
+  
+  .submit-button:hover:not(:disabled) {
+    background-color: #31327a; /* Màu accent đậm hơn */
+  }
+  
+  .submit-button:disabled {
+    background-color: #a9aadc; /* Màu nhạt hơn khi disable */
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+  
+  /* --- Link Đăng nhập (Sử dụng màu accent) --- */
+  .toggle-view { margin-top: 25px; font-size: 0.9em; color: #555; }
+  .link-button { background: none; border: none; color: #3f4096; /* Màu accent */ text-decoration: none; cursor: pointer; padding: 0; font-size: inherit; }
+  .link-button:hover { text-decoration: underline; }
+  
+  /* --- Responsive (Ví dụ) --- */
+  @media (max-width: 768px) {
+    .auth-box {
+        max-width: 90%; /* Cho phép rộng hơn trên tablet */
+        padding: 25px 30px;
+    }
+    .form-columns-container {
+        gap: 20px; /* Giảm khoảng cách cột */
+    }
+    .form-column {
+        min-width: 100%; /* Ép mỗi cột chiếm toàn bộ chiều rộng */
+        flex-basis: 100%;
+    }
+     .profile-image-section {
+          flex-direction: column; /* Xếp ảnh và nút dọc */
+          align-items: center; /* Căn giữa */
+          text-align: center;
+          gap: 10px;
+     }
+      .profile-image-controls {
+          align-items: center;
+      }
+      .profile-image-hint {
+          text-align: center;
+      }
+  }
+  
+  @media (max-width: 480px) {
+      .auth-box {
+          padding: 20px 15px;
+      }
+       /* Giảm font size input/select nếu cần */
+  }

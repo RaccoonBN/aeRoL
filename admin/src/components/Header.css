@@ -1,0 +1,127 @@
+/* src/components/admin/Header.css */
+
+.admin-header {
+    display: flex;                /* Sử dụng flexbox để căn chỉnh các phần tử con */
+    justify-content: space-between; /* Đẩy logo sang trái, user info sang phải */
+    align-items: center;          /* Căn các phần tử theo chiều dọc */
+    padding: 10px 30px;           /* Khoảng cách bên trong header (top/bottom 10px, left/right 30px) */
+    background-color: #ffffff;    /* Màu nền trắng */
+    border-bottom: 1px solid #e0e0e0; /* Đường kẻ mờ phân cách phía dưới */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ */
+    height: 60px;                 /* Chiều cao cố định cho header */
+    box-sizing: border-box;       /* Đảm bảo padding/border không làm tăng kích thước tổng */
+    position: sticky;             /* Giữ header cố định ở trên cùng khi cuộn */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;                /* Đảm bảo header nằm trên các phần tử khác */
+  }
+  
+  /* --- Phần Logo --- */
+  .header-logo {
+    display: flex;
+    align-items: center; /* Căn logo và text theo chiều dọc */
+  }
+  
+  .header-logo-img {
+    height: 38px;       /* Kích thước logo */
+    margin-right: 12px; /* Khoảng cách giữa logo và text */
+  }
+  
+  .header-logo-text {
+    font-size: 1.3em;   /* Kích thước chữ tên ứng dụng */
+    font-weight: 600;   /* Độ đậm */
+    color: #3f4096;     /* Màu chủ đạo */
+    white-space: nowrap; /* Ngăn text xuống dòng */
+  }
+  
+  /* --- Phần Thông tin người dùng --- */
+  .header-user-info {
+    display: flex;
+    align-items: center;
+    gap: 18px; /* Khoảng cách giữa các phần tử: avatar, tên, nút logout */
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;   /* Bo tròn thành hình tròn */
+    object-fit: cover;    /* Đảm bảo ảnh vừa vặn, không bị méo */
+    border: 2px solid #e9eafc; /* Viền nhạt màu chủ đạo */
+    background-color: #f0f2f5; /* Màu nền placeholder nếu ảnh chưa tải */
+  }
+  
+  .user-name {
+    font-weight: 500;
+    color: #495057;     /* Màu chữ tối hơn một chút */
+    white-space: nowrap;
+  }
+  
+  .logout-button {
+    background-color: #dc3545; /* Màu đỏ cảnh báo cho logout */
+    color: white;
+    border: none;
+    padding: 7px 14px; /* Tăng nhẹ padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease; /* Thêm hiệu ứng transform */
+  }
+  
+  .logout-button:hover {
+    background-color: #c82333; /* Đậm hơn khi hover */
+    transform: translateY(-1px); /* Nhấc lên một chút khi hover */
+  }
+  
+  .logout-button:active {
+      transform: translateY(0px); /* Nhấn xuống khi click */
+  }
+  
+  /* --- Responsive (Ví dụ) --- */
+  @media (max-width: 768px) {
+    .admin-header {
+      padding: 8px 15px; /* Giảm padding trên màn hình nhỏ */
+      height: 55px;
+    }
+  
+    .header-logo-img {
+      height: 30px;
+      margin-right: 8px;
+    }
+  
+    .header-logo-text {
+      font-size: 1.1em;
+    }
+  
+    .header-user-info {
+      gap: 10px;
+    }
+  
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+    }
+  
+    .user-name {
+      font-size: 0.9em;
+      /* Có thể ẩn tên trên màn hình rất nhỏ nếu cần */
+      /* display: none; */
+    }
+  
+    .logout-button {
+      padding: 5px 10px;
+      font-size: 0.85em;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .header-logo-text {
+        /* Ẩn text logo trên màn hình cực nhỏ */
+        display: none;
+    }
+     .user-name {
+        /* Ẩn tên trên màn hình rất nhỏ nếu cần */
+        display: none;
+    }
+  }

@@ -1,0 +1,63 @@
+/* src/pages/HomePage.css */
+
+/* --- Container chính bao bọc toàn bộ trang --- */
+.admin-homepage-container {
+    display: flex;
+    flex-direction: column; /* Xếp header và body theo chiều dọc */
+    min-height: 100vh;      /* Chiều cao tối thiểu bằng chiều cao màn hình */
+    background-color: #f8f9fa; /* Màu nền rất nhạt cho toàn trang */
+  }
+  
+  /* --- Khu vực thân trang (chứa sidebar và nội dung chính) --- */
+  .admin-body {
+    display: flex;          /* Xếp sidebar và nội dung chính theo chiều ngang */
+    flex-grow: 1;           /* Cho phép khu vực này lấp đầy không gian dọc còn lại dưới header */
+    overflow: hidden;       /* Ngăn chặn lỗi scroll không mong muốn ở body */
+  }
+  
+  /* --- Khu vực Nội dung chính (bên phải sidebar) --- */
+  .admin-main-content {
+    flex-grow: 1;           /* Cho phép khu vực này chiếm hết không gian ngang còn lại */
+    padding: 30px 35px;     /* Tăng padding bên trong */
+    background-color: #ffffff; /* Nền trắng cho khu vực nội dung */
+    overflow-y: auto;       /* Tự động thêm thanh cuộn dọc CHỈ cho khu vực này nếu nội dung dài */
+    box-shadow: inset 2px 0 8px rgba(0, 0, 0, 0.06); /* Bóng đổ nhẹ bên trong từ sidebar */
+  }
+  
+  /* --- Định dạng cơ bản cho nội dung bên trong .admin-main-content --- */
+  /* (Các component con như AdminProfile, EventManagement... nên có CSS riêng,
+     nhưng có thể đặt một vài style chung ở đây nếu muốn) */
+  
+ 
+  
+  /* --- Chỉ báo tải dữ liệu --- */
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px; /* Đảm bảo nó chiếm không gian đáng kể */
+    font-size: 1.2em;
+    color: #6c757d;
+    font-style: italic;
+    width: 100%; /* Chiếm toàn bộ chiều rộng của container cha */
+  }
+  
+  /* --- Responsive --- */
+  @media (max-width: 992px) {
+    .admin-main-content {
+      padding: 20px 25px; /* Giảm padding trên màn hình nhỏ hơn */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Trên màn hình nhỏ, bạn có thể muốn ẩn sidebar hoặc làm nó hẹp hơn. */
+    /* CSS này chỉ điều chỉnh padding nội dung */
+    .admin-main-content {
+      padding: 15px 20px;
+      box-shadow: none; /* Có thể bỏ shadow nếu không còn sidebar cố định */
+    }
+  
+    .admin-body {
+        /* Có thể cần điều chỉnh nếu sidebar thay đổi (ví dụ: ẩn đi) */
+    }
+  }

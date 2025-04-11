@@ -1,0 +1,225 @@
+/* src/components/admin/AdminProfile.css */
+
+.admin-profile-container {
+    padding: 20px;
+    max-width: 900px; /* Giới hạn chiều rộng tối đa */
+    margin: 0 auto;   /* Căn giữa container */
+  }
+  
+  /* --- Tiêu đề --- */
+  .admin-profile-container h2 {
+      font-size: 1.8em;
+      color: #3f4096; /* Màu chủ đạo */
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #3f4096;
+      text-align: center; /* Căn giữa tiêu đề */
+  }
+  
+  /* --- Layout chính: Ảnh và Thông tin --- */
+  .profile-layout {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 40px;       /* Khoảng cách giữa khu vực ảnh và thông tin */
+    align-items: flex-start;
+    background-color: #ffffff; /* Nền trắng cho khu vực profile */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* --- Khu vực Ảnh --- */
+  .profile-image-area {
+    flex: 0 0 200px; /* Chiều rộng cố định hơn một chút, không co giãn */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-right: 30px; /* Tạo khoảng cách nếu border được thêm */
+    border-right: 1px solid #eee; /* Đường kẻ phân cách nhẹ */
+  }
+  
+  .profile-image-display {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #e9eafc; /* Viền nhạt màu chủ đạo */
+    margin-bottom: 20px;
+    background-color: #f0f2f5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    display: block;
+  }
+  
+  .image-select-button {
+    background-color: #f0f2f5;
+    color: #3f4096; /* Màu chủ đạo */
+    border: 1px solid #d0d3e0;
+    padding: 9px 18px; /* Tăng padding */
+    border-radius: 25px; /* Bo tròn hơn */
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 15px; /* Khoảng cách với nút lưu/hủy */
+  }
+  
+  .image-select-button:hover:not(:disabled) {
+    background-color: #e2e6ea;
+    box-shadow: 0 2px 5px rgba(63, 64, 150, 0.15);
+    transform: translateY(-1px); /* Hiệu ứng nhấc lên nhẹ */
+  }
+  
+  .image-action-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* Tăng khoảng cách */
+      margin-top: 10px;
+      width: 100%; /* Chiếm hết chiều rộng khu vực ảnh */
+  }
+  
+  .image-upload-button,
+  .image-cancel-button {
+      width: 100%;
+      padding: 8px 12px; /* Điều chỉnh padding */
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      border: none; /* Bỏ viền mặc định */
+  }
+  
+  .image-upload-button {
+      background-color: #3f4096; /* Màu chủ đạo */
+      color: white;
+  }
+  .image-upload-button:hover:not(:disabled) {
+      background-color: #31327a; /* Đậm hơn */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .image-cancel-button {
+      background-color: #6c757d; /* Xám */
+      color: white;
+  }
+  .image-cancel-button:hover:not(:disabled) {
+      background-color: #5a6268;
+  }
+  
+  .image-upload-button:disabled,
+  .image-cancel-button:disabled,
+  .image-select-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+  }
+  
+  /* --- Spinner Animation --- */
+  .spinner {
+    animation: spin 1s linear infinite;
+    margin-right: 5px; /* Khoảng cách với text "Đang lưu..." */
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  
+  /* --- Khu vực Thông tin chi tiết --- */
+  .profile-details-area {
+    flex: 1; /* Chiếm hết không gian còn lại */
+    min-width: 350px; /* Chiều rộng tối thiểu trước khi wrap */
+  }
+  
+  .detail-item {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép label và value xuống dòng nếu cần */
+    margin-bottom: 18px; /* Tăng khoảng cách */
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 1.05em; /* Tăng nhẹ font size */
+    align-items: baseline;
+  }
+  
+  .detail-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+  }
+  
+  .detail-label {
+    font-weight: 600;
+    color: #555;
+    min-width: 130px; /* Tăng chiều rộng label */
+    flex-shrink: 0;
+    margin-right: 15px; /* Tăng khoảng cách label và value */
+    margin-bottom: 5px; /* Khoảng cách nếu value xuống dòng */
+  }
+  
+  .detail-value {
+    color: #212529; /* Màu text đậm hơn */
+    word-break: break-word;
+    flex-grow: 1; /* Cho phép value chiếm hết phần còn lại */
+  }
+  
+  /* Kiểu cho giá trị "Chưa có" */
+  .detail-value .not-available {
+      color: #999;
+      font-style: italic;
+  }
+  
+  
+  /* --- Messages (Giữ lại hoặc copy từ CSS chung) --- */
+  .message-box {
+    padding: 12px 15px; margin-bottom: 25px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center; font-size: 0.95em; text-align: left; border: 1px solid transparent;
+  }
+  .message-box.error-message { background-color: #fdebee; color: #d9534f; border-color: #f5c6cb;}
+  .message-box.success-message { background-color: #eaf7eb; color: #4caf50; border-color: #c8e6c9;}
+  .message-box button { background: none; border: none; color: inherit; cursor: pointer; opacity: 0.7; font-size: 1.1em; padding: 0 5px;}
+  .message-box button:hover { opacity: 1; }
+  
+  
+  /* --- Loading Indicator (Copy từ HomePage.css nếu có) --- */
+  .loading-indicator {
+    text-align: center; padding: 30px; font-size: 1.1em; color: #6c757d;
+  }
+  
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .profile-layout {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      padding: 20px; /* Giảm padding trên màn hình nhỏ */
+    }
+  
+    .profile-image-area {
+      flex-basis: auto;
+      width: 100%;
+      max-width: 250px;
+      margin-bottom: 10px; /* Giảm khoảng cách dưới khu vực ảnh */
+      padding-right: 0; /* Bỏ padding */
+      border-right: none; /* Bỏ đường kẻ */
+      border-bottom: 1px solid #eee; /* Thêm đường kẻ dưới thay thế */
+      padding-bottom: 25px;
+    }
+  
+    .profile-details-area {
+      width: 100%;
+      min-width: unset;
+    }
+  
+     .detail-item {
+         padding-bottom: 15px;
+         margin-bottom: 15px;
+     }
+     .admin-profile-container h2 {
+         font-size: 1.6em;
+         margin-bottom: 25px;
+     }
+  }

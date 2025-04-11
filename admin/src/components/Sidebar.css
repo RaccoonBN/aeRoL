@@ -1,0 +1,173 @@
+/* src/components/admin/Sidebar.css */
+
+/* --- Container chính của Sidebar --- */
+.admin-sidebar {
+    width: 260px;                 /* Chiều rộng mặc định rộng hơn một chút */
+    background-color: #ffffff;    /* Nền trắng sạch sẽ */
+    color: #343a40;               /* Màu chữ tối mặc định */
+    padding: 25px 0;              /* Padding trên dưới */
+    flex-shrink: 0;               /* Không co lại */
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #dee2e6; /* Đường kẻ phân cách tinh tế */
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.05); /* Đổ bóng rõ hơn */
+    height: calc(100vh - 60px);     /* Chiều cao = viewport - header (giả sử header 60px) */
+    position: sticky;               /* Cố định khi cuộn */
+    top: 60px;                      /* Vị trí dính dưới header */
+    left: 0;                       /* Dính sát lề trái */
+    overflow-y: auto;               /* Scroll nếu menu dài */
+    z-index: 999;                   /* Đảm bảo nằm trên một số lớp nhưng dưới header/modal nếu cần */
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Hiệu ứng co giãn mượt */
+  }
+  
+  /* --- Danh sách menu --- */
+  .admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  /* --- Mỗi mục menu (list item) --- */
+  .admin-sidebar li {
+    margin: 4px 0; /* Khoảng cách giữa các mục */
+  }
+  
+  /* --- Nút bấm trong mỗi mục menu --- */
+  .admin-sidebar li button {
+    display: flex;
+    align-items: center;
+    gap: 15px;                 /* Khoảng cách icon và text */
+    width: calc(100% - 24px);  /* Width tính cả margin */
+    background: none;
+    border: none;
+    color: #5a6a7d;           /* Màu chữ hơi xám xanh */
+    padding: 14px 20px;       /* Padding thoải mái */
+    margin: 0 12px;           /* Margin trái phải */
+    text-align: left;
+    cursor: pointer;
+    font-size: 1rem;          /* Font size chuẩn */
+    font-weight: 500;
+    border-radius: 8px;       /* Bo góc nhiều hơn */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.25s ease;
+  }
+  
+  /* --- Icon trong nút --- */
+  .admin-sidebar .menu-icon {
+    font-size: 1.2em; /* Icon to hơn một chút */
+    flex-shrink: 0;
+    width: 20px;      /* Đảm bảo icon có chiều rộng cố định */
+    text-align: center;
+    color: #8a99aa;   /* Màu icon nhạt hơn text */
+    transition: color 0.25s ease, transform 0.3s ease;
+  }
+  
+  /* --- Text trong nút --- */
+  .admin-sidebar .menu-text {
+      transition: opacity 0.2s ease-in-out; /* Hiệu ứng mờ dần khi thu gọn */
+  }
+  
+  /* --- Hiệu ứng khi rê chuột qua nút menu --- */
+  .admin-sidebar li button:hover {
+    background-color: #f4f5fd; /* Màu nền hover rất nhạt */
+    color: #3f4096;           /* Màu chữ chủ đạo */
+  }
+  .admin-sidebar li button:hover .menu-icon {
+      color: #3f4096; /* Icon cũng đổi màu theo */
+  }
+  
+  
+  /* --- Kiểu cho mục menu đang được chọn (active) --- */
+  .admin-sidebar li.active button {
+    background-color: #3f4096; /* Màu nền chủ đạo */
+    color: #ffffff;           /* Chữ trắng */
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(63, 64, 150, 0.3); /* Shadow rõ khi active */
+  }
+  .admin-sidebar li.active button .menu-icon {
+      color: #ffffff; /* Icon trắng khi active */
+  }
+  /* Bỏ hiệu ứng transform khi active để ổn định */
+  .admin-sidebar li.active button:hover {
+      background-color: #31327a; /* Đậm hơn khi hover trên active */
+      transform: none; /* Bỏ transform hover khi active */
+  }
+  
+  
+  /* === Responsive: Thu gọn thành icon-only === */
+  
+  /* Breakpoint ví dụ cho màn hình nhỏ hơn (tablet dọc & mobile) */
+  @media (max-width: 991px) { /* Thay đổi breakpoint nếu cần */
+    .admin-sidebar {
+      width: 80px;      /* Chiều rộng khi thu gọn */
+      padding: 20px 0;
+    }
+  
+    .admin-sidebar li button {
+      width: calc(100% - 16px); /* Width tính theo margin mới */
+      margin: 5px 8px;         /* Margin nhỏ hơn */
+      padding: 15px 0;         /* Chỉ padding dọc */
+      justify-content: center; /* Căn giữa icon */
+      gap: 0;                  /* Bỏ gap khi chỉ có icon */
+    }
+  
+    /* Ẩn text */
+    .admin-sidebar .menu-text {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      width: 0;
+      pointer-events: none;
+      transition: opacity 0.1s ease, visibility 0s linear 0.1s; /* Đảm bảo ẩn nhanh */
+    }
+  
+    /* Định dạng lại icon */
+    .admin-sidebar .menu-icon {
+      font-size: 1.6em; /* Icon to hơn đáng kể */
+      margin: 0;        /* Reset margin */
+      width: auto;      /* Để icon tự căn chỉnh */
+      color: #5a6a7d;   /* Màu icon mặc định khi thu gọn */
+    }
+  
+    /* Bỏ hiệu ứng transform khi hover */
+    .admin-sidebar li button:hover {
+       transform: none;
+       background-color: #f4f5fd; /* Vẫn giữ hover background */
+    }
+     .admin-sidebar li button:hover .menu-icon {
+         color: #3f4096; /* Icon vẫn đổi màu khi hover */
+     }
+  
+     /* Điều chỉnh active state khi thu gọn */
+     .admin-sidebar li.active button {
+          box-shadow: 0 3px 8px rgba(63, 64, 150, 0.2);
+          /* Background và color đã được định nghĩa ở trên */
+     }
+     .admin-sidebar li.active button .menu-icon {
+          color: #ffffff; /* Icon trắng khi active */
+     }
+  
+     /* Thêm tooltip khi hover vào li (khi sidebar thu gọn) */
+     /* Dùng thuộc tính title trong JSX là cách đơn giản nhất */
+     /* Nếu muốn tooltip đẹp hơn cần thư viện hoặc CSS phức tạp hơn */
+  
+  }
+  
+  /* --- Scrollbar Styling (Tùy chọn, cho Webkit browsers) --- */
+  .admin-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .admin-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  .admin-sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+  }
+  .admin-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }

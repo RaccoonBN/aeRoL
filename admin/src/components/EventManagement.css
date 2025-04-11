@@ -1,0 +1,374 @@
+/* src/components/admin/EventManagement.css */
+
+/* --- Container chính --- */
+.event-management-container {
+    padding: 20px;
+  }
+  
+  .event-management-container h2 {
+    /* Kế thừa hoặc định nghĩa lại */
+    font-size: 1.8em;
+    color: #3f4096;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  /* --- Khu vực Filters và Nút Thêm --- */
+  .filters-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+    gap: 15px; /* Khoảng cách giữa các nhóm control */
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f8f9fa; /* Nền nhạt cho khu vực filter */
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+  }
+  
+  /* Form tìm kiếm */
+  .search-form {
+    display: flex;
+    gap: 8px;
+    flex-grow: 1; /* Cho phép ô tìm kiếm mở rộng */
+    min-width: 200px; /* Chiều rộng tối thiểu */
+  }
+  
+  .search-form input[type="text"] {
+    padding: 9px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    flex-grow: 1; /* Input chiếm hết không gian còn lại */
+    font-size: 0.95em;
+  }
+  .search-form input[type="text"]:focus {
+    border-color: #3f4096;
+    box-shadow: 0 0 0 2px rgba(63, 64, 150, 0.15);
+    outline: none;
+  }
+  
+  .search-form button {
+    padding: 9px 15px;
+    background-color: #6c757d; /* Màu xám cho nút tìm */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.95em;
+    transition: background-color 0.2s ease;
+  }
+  .search-form button:hover:not(:disabled) {
+      background-color: #5a6268;
+  }
+  
+  /* Các control lọc (select) */
+  .filter-controls {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; /* Cho phép filter xuống dòng */
+  }
+  
+  .filter-controls select {
+    padding: 9px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 0.95em;
+    cursor: pointer;
+    min-width: 150px; /* Chiều rộng tối thiểu cho select */
+  }
+  .filter-controls select:focus {
+     border-color: #3f4096;
+     box-shadow: 0 0 0 2px rgba(63, 64, 150, 0.15);
+     outline: none;
+  }
+  
+  /* Nút tải lại */
+  .filter-controls button {
+      padding: 9px 12px;
+      background-color: #f8f9fa;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #495057;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .filter-controls button:hover:not(:disabled) {
+      background-color: #e9ecef;
+      border-color: #adb5bd;
+  }
+  
+  /* Nút Thêm sự kiện */
+  .add-button {
+    padding: 9px 18px !important; /* Ghi đè padding nếu cần */
+    font-size: 0.95em !important;
+    font-weight: 500;
+    margin-left: auto; /* Đẩy nút sang phải cùng */
+    white-space: nowrap; /* Không xuống dòng */
+  }
+  
+  /* --- Bảng Sự kiện --- */
+  .event-table-container {
+    overflow-x: auto; /* Thêm scroll ngang nếu bảng quá rộng */
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+  }
+  
+  .event-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+  }
+  
+  .event-table-container th,
+  .event-table-container td {
+    border-bottom: 1px solid #dee2e6; /* Chỉ kẻ ngang */
+    padding: 12px 15px; /* Padding đồng đều */
+    text-align: left;
+    vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
+  }
+  
+  .event-table-container thead th {
+    background-color: #f8f9fa; /* Nền nhẹ cho header */
+    font-weight: 600;
+    color: #495057;
+    position: sticky; /* Giữ header cố định khi cuộn dọc table */
+    top: 0;
+    z-index: 1;
+  }
+  
+  .event-table-container tbody tr:hover {
+    background-color: #f1f3ff; /* Màu hover nhẹ */
+  }
+  
+  /* Style cho dòng sự kiện bị hủy */
+  .event-table-container tr.cancelled-event {
+    opacity: 0.7;
+    background-color: #f8f9fa; /* Nền xám nhẹ */
+    text-decoration: line-through; /* Gạch ngang */
+  }
+  .event-table-container tr.cancelled-event td {
+      color: #6c757d; /* Màu chữ xám */
+  }
+  
+  /* Trạng thái */
+  .status-cancelled,
+  .status-active /* Thêm các class trạng thái khác nếu cần */ {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px; /* Bo tròn */
+      font-size: 0.8em;
+      font-weight: 500;
+      white-space: nowrap;
+  }
+  .status-cancelled {
+      background-color: #f8d7da; /* Nền đỏ nhạt */
+      color: #721c24; /* Chữ đỏ đậm */
+      text-decoration: none !important; /* Bỏ gạch ngang của dòng */
+  }
+  .status-active {
+      background-color: #d4edda; /* Nền xanh lá nhạt */
+      color: #155724; /* Chữ xanh lá đậm */
+  }
+  /* Thêm các màu khác cho "Sắp diễn ra", "Đang diễn ra"... */
+  
+  
+  /* Các nút hành động trong bảng */
+  .action-buttons {
+      display: flex;
+      gap: 8px; /* Khoảng cách giữa các nút */
+      white-space: nowrap; /* Ngăn nút xuống dòng */
+  }
+  
+  .action-buttons button {
+      background: none;
+      border: none;
+      padding: 5px; /* Padding nhỏ cho nút icon */
+      cursor: pointer;
+      color: #6c757d; /* Màu icon mặc định */
+      font-size: 1.1em; /* Kích thước icon */
+      transition: color 0.2s ease, transform 0.1s ease;
+      display: flex;
+      align-items: center;
+  }
+  .action-buttons button:hover:not(:disabled) {
+      transform: scale(1.15); /* Phóng to nhẹ khi hover */
+  }
+  
+  .action-buttons button[title="Xem chi tiết"]:hover { color: #007bff; } /* Màu xanh dương */
+  .action-buttons button[title="Chỉnh sửa"]:hover { color: #ffc107; } /* Màu vàng */
+  .action-buttons button[title="Hủy sự kiện"]:hover { color: #fd7e14; } /* Màu cam */
+  .action-buttons button[title="Xóa sự kiện"]:hover { color: #dc3545; } /* Màu đỏ */
+  
+  .action-buttons button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+  }
+  
+  
+  /* --- Modal Styles --- */
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Lớp nền mờ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1050; /* Đảm bảo modal nằm trên các thành phần khác */
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    max-width: 600px; /* Chiều rộng tối đa của modal */
+    width: 90%;       /* Chiều rộng linh hoạt */
+    max-height: 90vh; /* Chiều cao tối đa */
+    overflow-y: auto; /* Thêm scroll nếu nội dung modal dài */
+    position: relative; /* Để định vị nút đóng */
+  }
+  
+  .event-form-modal h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #3f4096;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .modal-close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #aaa;
+      cursor: pointer;
+      line-height: 1;
+      padding: 0;
+  }
+  .modal-close-button:hover {
+      color: #333;
+  }
+  
+  
+  /* Form groups trong modal */
+  .form-group {
+    margin-bottom: 18px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #495057;
+    font-size: 0.95em;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="datetime-local"],
+  .form-group input[type="number"],
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+  }
+  .form-group textarea {
+      min-height: 80px;
+      resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+     border-color: #3f4096;
+     box-shadow: 0 0 0 2px rgba(63, 64, 150, 0.15);
+     outline: none;
+  }
+  
+  /* Nút trong form modal */
+  .form-actions {
+    display: flex;
+    justify-content: flex-end; /* Đẩy nút sang phải */
+    gap: 10px;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+  }
+  
+  .button { /* Style chung cho nút */
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95em;
+    border: none;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+  }
+  .button.primary { background-color: #3f4096; color: white; }
+  .button.primary:hover:not(:disabled) { background-color: #31327a; }
+  .button.secondary { background-color: #6c757d; color: white; }
+  .button.secondary:hover:not(:disabled) { background-color: #5a6268; }
+  .button:disabled { opacity: 0.6; cursor: not-allowed; }
+  
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+      .filters-container {
+          flex-direction: column; /* Xếp chồng filter và nút */
+          align-items: stretch; /* Kéo dài các item */
+      }
+      .search-form {
+          width: 100%;
+      }
+      .filter-controls {
+          width: 100%;
+          justify-content: space-between; /* Phân bố select và nút tải lại */
+      }
+      .filter-controls select {
+          flex-grow: 1; /* Cho select chiếm nhiều không gian hơn */
+          min-width: 120px;
+      }
+      .add-button {
+          margin-left: 0; /* Reset margin */
+          width: 100%; /* Nút thêm chiếm hết dòng */
+          margin-top: 10px;
+      }
+  
+      .event-table-container th,
+      .event-table-container td {
+          padding: 10px 8px; /* Giảm padding bảng */
+          font-size: 0.9em; /* Giảm font chữ bảng */
+      }
+      .action-buttons {
+          gap: 5px;
+      }
+       .action-buttons button {
+           font-size: 1em; /* Giảm nhẹ icon */
+       }
+  }
+  
+  @media (max-width: 576px) {
+      .modal-content {
+          width: 95%;
+          padding: 20px 15px;
+      }
+      .form-actions {
+          flex-direction: column-reverse; /* Xếp nút dọc, nút chính ở dưới */
+          align-items: stretch; /* Kéo dài nút */
+      }
+  }

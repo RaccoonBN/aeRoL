@@ -1,376 +1,304 @@
-  
-/* src/LoginPage.css (hoặc RegisterPage.css) */
+/* src/LoginPage.css */
 
-/* --- General Styles & Container --- */
+/* --- Base & Global Styles (Copied from RegisterPage for consistency) --- */
+:root {
+  --accent-color: #3f4096; /* Primary action color */
+  --accent-color-dark: #31327a;
+  --accent-color-light: #a9aadc;
+  --text-dark: #1c1e21;
+  --text-medium: #606770;
+  --text-light: #888;
+  --border-light: #dde1e6; /* Softer border */
+  --background-main: #ffffff; /* Default to white background */
+  --background-box: #ffffff;
+  --background-disabled: #e9ecef;
+  --error-bg: #f8d7da;
+  --error-text: #721c24;
+  --error-border: #f5c6cb;
+  --success-bg: #d4edda;
+  --success-text: #155724;
+  --success-border: #c3e6cb;
+  --focus-shadow-color: rgba(63, 64, 150, 0.25);
+}
+
+/* Apply box-sizing globally */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    /* ---> Đặt font-family ở đây <--- */
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #f8f9fa; /* Màu nền body rất nhạt */
-    color: #212529; /* Màu chữ mặc định tối */
-  }
-  
-  .auth-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 1rem;
-    background-color: #f8f9fa; /* Chỉ cần màu nền đơn giản */
-    box-sizing: border-box;
-  }
-  
-  /* --- Form Box --- */
-  .auth-box {
-    width: 100%;
-    max-width: 28rem;
-    background-color: #ffffff; /* Nền trắng chủ đạo */
-    padding: 2rem;
-    border-radius: 0.75rem; /* Hơi giảm bo góc */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow nhẹ hơn */
-  }
-  
-  /* --- Logo --- */
-  .logo-placeholder {
-    border: none; /* Bỏ border */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    margin-bottom: 2rem; /* Tăng khoảng cách dưới logo */
-  }
-  
-  .logo-image {
-    max-height: 55px; /* Điều chỉnh kích thước logo nếu cần */
-    width: auto;
-  }
-  
-  /* --- Headings and Paragraphs --- */
-  .auth-box h2 {
-    font-size: 1.5rem; /* Tăng kích thước tiêu đề */
-    font-weight: 600; /* Semibold */
-    text-align: center;
-    color: #3f4096; /* Màu nhấn chính */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Common system font stack */
+  background-color: var(--background-main);
+  /* Body no longer centers the box directly */
+  margin: 0;
+  padding: 20px; /* Padding around the page content */
+}
+
+/* --- Shared Auth Container --- */
+.auth-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centers the auth-box horizontally */
+  align-items: center;    /* Centers the auth-box vertically */
+  min-height: calc(100vh - 40px); /* Calculate min-height based on body padding */
+}
+
+/* --- Auth Box Styling --- */
+.auth-box {
+  background-color: var(--background-box);
+  padding: 35px 45px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0,0,0,0.05);
+  width: 100%;
+  text-align: center;
+  max-width: 450px; /* Slightly narrower for login */
+}
+
+/* --- Logo --- */
+/* Reuse Register Page Styles if applicable */
+.student-register-logo-area {
+  margin-bottom: 30px;
+}
+.student-register-logo {
+  max-height: 55px;
+  width: auto;
+}
+
+/* --- Typography --- */
+/* Reuse Register Page Styles if applicable */
+.auth-box h2 { /* Make it more generic if shared */
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+  font-size: 1.8em;
+  font-weight: 600;
+}
+.auth-box p { /* Make it more generic if shared */
+  margin-bottom: 25px;
+  color: var(--text-medium);
+  font-size: 1em;
+  line-height: 1.5;
+}
+.student-register-info-text { /* Keep if used, or rename */
+    /* Styles from RegisterPage... */
+}
+
+/* --- Message Boxes (Error/Success) --- */
+.message-box {
+  padding: 12px 18px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95em;
+  border: 1px solid transparent;
+  text-align: left;
+}
+.message-box span { flex-grow: 1; }
+.error-message { background-color: var(--error-bg); color: var(--error-text); border-color: var(--error-border); }
+.success-message { background-color: var(--success-bg); color: var(--success-text); border-color: var(--success-border); }
+.message-close-btn {
+  background: none; border: none; color: inherit; font-size: 1.2em; font-weight: bold;
+  cursor: pointer; padding: 0 0 0 15px; opacity: 0.6; transition: opacity 0.2s ease; line-height: 1;
+}
+.message-close-btn:hover { opacity: 0.9; }
+
+/* --- Form Elements (Reusing Register Page Classes) --- */
+.student-register-form { /* Used for all form views */
+    margin-top: 10px;
+}
+
+.student-register-input-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.student-register-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1em;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Common Input & Select Styling */
+.auth-box input[type="text"],
+.auth-box input[type="email"],
+.auth-box input[type="password"],
+.auth-box select { /* Target inputs/selects within auth-box */
+  width: 100%;
+  padding: 13px 18px 13px 45px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 1em;
+  color: var(--text-dark);
+  background-color: var(--background-box);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.auth-box select { /* Select-specific styles */
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23a0aec0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 18px auto;
+  padding-right: 45px;
+  cursor: pointer;
+}
+
+/* Focus States */
+.auth-box input:focus,
+.auth-box select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--focus-shadow-color);
+}
+
+/* Disabled States */
+.auth-box input:disabled,
+.auth-box select:disabled {
+  background-color: var(--background-disabled);
+  cursor: not-allowed;
+  opacity: 0.7;
+  border-color: var(--border-light);
+  box-shadow: none;
+}
+
+/* --- Submit Button (Reuse class name) --- */
+.student-register-submit-btn {
+  width: 100%;
+  padding: 13px 20px;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  margin-top: 10px; /* Adjusted margin */
+  margin-bottom: 15px; /* Space before divider/google */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.student-register-submit-btn:hover:not(:disabled) { background-color: var(--accent-color-dark); box-shadow: 0 4px 8px rgba(63, 64, 150, 0.2); }
+.student-register-submit-btn:active:not(:disabled) { transform: scale(0.98); box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); }
+.student-register-submit-btn:focus { outline: none; box-shadow: 0 0 0 3px var(--focus-shadow-color); }
+.student-register-submit-btn:disabled { background-color: var(--accent-color-light); cursor: not-allowed; opacity: 0.6; box-shadow: none; }
+
+
+/* --- Divider Styling --- */
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.85em;
+  margin: 25px 0;
+  font-weight: 500;
+}
+.divider::before,
+.divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-light); }
+.divider:not(:empty)::before { margin-right: .5em; }
+.divider:not(:empty)::after { margin-left: .5em; }
+
+/* --- Google Login Button --- */
+.google-login-button {
+  display: inline-flex; /* Use inline-flex */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 11px 15px; /* Slightly less padding than main button */
+  background-color: #fff;
+  color: #3c4043; /* Google's recommended text color */
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  font-size: 1em; /* Slightly smaller font */
+  font-weight: 500; /* Medium weight */
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-bottom: 8px; /* Space below button */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.google-login-button:hover:not(:disabled) { background-color: #f8f9fa; border-color: #c6cacf; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+.google-login-button:disabled { opacity: 0.6; cursor: not-allowed; box-shadow: none; }
+.google-icon { margin-right: 10px; font-size: 1.3em; /* Make icon slightly larger */ vertical-align: middle; }
+.google-login-button span { vertical-align: middle; }
+
+
+/* --- Info Text Styling --- */
+.info-text { /* General info text */
+  font-size: 0.85em;
+  color: var(--text-medium);
+  margin-top: -10px;
+  margin-bottom: 15px;
+  text-align: left;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 3px solid var(--accent-color-light);
+}
+.info-text.google-info { /* Specific for Google info */
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 25px;
+}
+
+/* --- Link Buttons & View Toggle --- */
+.button-group { /* For Verify View */
+  margin-top: 15px; display: flex; justify-content: space-between; align-items: center; gap: 15px;
+}
+.link-button { /* General link button style */
+  background: none; border: none; color: var(--accent-color); text-decoration: none; cursor: pointer;
+  padding: 5px 0; font-size: 0.9em; font-weight: 500; transition: color 0.2s ease;
+}
+.link-button:hover:not(:disabled),
+.link-button:focus:not(:disabled) { color: var(--accent-color-dark); text-decoration: underline; outline: none; }
+.link-button:disabled { color: var(--text-light); cursor: not-allowed; opacity: 0.7; text-decoration: none; }
+.cancel-button { color: var(--text-medium); } /* Specific cancel button color */
+.cancel-button:hover:not(:disabled),
+.cancel-button:focus:not(:disabled) { color: var(--text-dark); }
+
+.toggle-view { /* "Don't have an account?" section */
+  margin-top: 30px; font-size: 0.95em; color: var(--text-medium);
+}
+.student-register-login-link-section { /* Keep if used */
+    /* Styles from RegisterPage... */
+}
+.student-register-login-link { /* Keep if used */
+   /* Styles from RegisterPage... */
+   color: var(--accent-color); /* Ensure link color */
+}
+
+/* --- Responsive Adjustments (Copied from RegisterPage for consistency) --- */
+@media (max-width: 520px) {
+  .auth-box { /* Target generic auth-box now */
+    max-width: 100%;
+    padding: 25px 30px;
+    box-shadow: none;
     margin-top: 0;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
   }
-  
-  .auth-box p {
-    font-size: 0.9rem;
-    color: #495057; /* Màu xám tối hơn chút */
-    text-align: center;
-    margin-top: 0.5rem;
-    margin-bottom: 1.75rem; /* Tăng khoảng cách */
-    line-height: 1.5;
-  }
-  
-  /* Text thông báo dưới input email VAA */
-  .auth-box p.info-text {
-    font-size: 0.8rem;
-    color: #3f4096; /* Màu nhấn */
-    background-color: rgba(63, 64, 150, 0.08); /* Nền nhạt của màu nhấn */
-    padding: 0.6rem;
-    border-radius: 0.375rem;
-    margin-top: -0.75rem;
-    margin-bottom: 1.25rem;
-    text-align: center;
-  }
-  
-  /* --- Form Elements Spacing --- */
-  .auth-box form > * + * {
-    margin-top: 1.1rem; /* Tăng nhẹ khoảng cách giữa các element */
-  }
-  
-  /* --- Inputs and Selects --- */
+  .auth-box h2 { font-size: 1.6em; }
+  body { padding: 15px; }
+}
+
+@media (max-width: 400px) {
+  .auth-box { padding: 25px 20px; }
   .auth-box input[type="text"],
   .auth-box input[type="email"],
   .auth-box input[type="password"],
-  .auth-box select {
-    width: 100%;
-    padding: 0.8rem 0.9rem; /* Tăng padding */
-    border: 1px solid #ced4da; /* Border xám nhạt */
-    border-radius: 0.375rem; /* Giảm bo góc input/select */
-    font-size: 0.95rem;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    background-color: #fff; /* Đảm bảo nền trắng */
-  }
-  
-  .auth-box select {
-     appearance: none;
-     background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22%23495057%22%3E%3Cpath%20d%3D%22M7.293%208.707a1%201%200%200%201%201.414%200L10%2010.586l1.293-1.293a1%201%200%201%201%201.414%201.414l-2%202a1%201%200%200%201-1.414%200l-2-2a1%201%200%200%201%200-1.414z%22%2F%3E%3C%2Fsvg%3E');
-     background-repeat: no-repeat;
-     background-position: right 0.75rem center;
-     background-size: 1.1em 1.1em;
-     padding-right: 2.5rem;
-  }
-  
-  /* Focus state sử dụng màu nhấn */
-  .auth-box input[type="text"]:focus,
-  .auth-box input[type="email"]:focus,
-  .auth-box input[type="password"]:focus,
-  .auth-box select:focus {
-    outline: none;
-    border-color: #3f4096; /* Màu nhấn */
-    box-shadow: 0 0 0 3px rgba(63, 64, 150, 0.15); /* Shadow nhạt của màu nhấn */
-  }
-  
-  .auth-box select:disabled {
-    background-color: #e9ecef;
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-  
-  /* Input mã xác thực */
-  .auth-box input[name="verificationCode"] {
-    text-align: center;
-    letter-spacing: 0.4em; /* Giảm giãn cách chút */
-    font-size: 1.2rem;
-    font-weight: 500;
-  }
-  .auth-box input[name="verificationCode"]::placeholder {
-    letter-spacing: normal;
-  }
-  
-  /* --- Helper Text --- */
-  .auth-box form p.helper-text {
-    font-size: 0.8rem;
-    color: #6c757d; /* Xám nhạt hơn */
-    margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
-    text-align: left;
-  }
-  
-  /* --- Buttons --- */
-  .auth-box button {
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out, color 0.2s ease-in-out, transform 0.1s ease;
-    font-family: inherit;
-    border: none; /* Bỏ border mặc định */
-    border-radius: 0.375rem; /* Giảm bo góc */
-    padding: 0.8rem 1rem; /* Tăng padding */
-    font-size: 0.95rem;
-    font-weight: 600; /* Semibold */
-  }
-  
-  /* Primary Submit Button (Login, Register, Verify, Complete Profile) */
-  .auth-box button[type="submit"] {
-    width: 100%;
-    background-color: #3f4096; /* Màu nhấn chính */
-    color: #ffffff; /* Chữ trắng */
-    text-transform: uppercase; /* Viết hoa chữ */
-    letter-spacing: 0.05em;
-  }
-  
-  .auth-box button[type="submit"]:hover {
-    background-color: #31327a; /* Màu nhấn đậm hơn */
-    transform: translateY(-1px); /* Hiệu ứng nhấc nhẹ */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .auth-box button[type="submit"]:active {
-    transform: translateY(0px);
-  }
-  
-  
-  .auth-box button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background-color: #adb5bd; /* Màu xám đậm hơn khi disabled */
-    color: #e9ecef;
-    transform: none; /* Bỏ hiệu ứng transform khi disabled */
-    box-shadow: none; /* Bỏ shadow khi disabled */
-  }
-  
-  /* --- Link Button --- */
-  .auth-box .link-button {
-    background: none;
-    color: #3f4096; /* Màu nhấn */
-    font-weight: 500;
-    padding: 0.25rem 0; /* Thêm chút padding */
-    font-size: 0.875rem;
-    text-decoration: none;
-    border-radius: 0; /* Bỏ border-radius */
-    text-transform: none; /* Không viết hoa */
-    letter-spacing: normal;
-  }
-  
-  .auth-box .link-button:hover {
-    text-decoration: underline;
-    color: #31327a; /* Màu nhấn đậm hơn */
-    background-color: transparent; /* Đảm bảo không có nền */
-    transform: none;
-    box-shadow: none;
-  }
-  
-  .auth-box .link-button:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      text-decoration: none;
-      color: #6c757d;
-  }
-  
-  /* Cancel Button Styling */
-  .auth-box .cancel-button {
-    color: #dc3545; /* Giữ màu đỏ cho cancel */
-  }
-  .auth-box .cancel-button:hover {
-    color: #a0212e; /* Đỏ đậm hơn */
-    text-decoration: underline;
-  }
-  
-  /* Button Group Layout */
-  .auth-box .button-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 0.75rem;
-  }
-  
-  /* Toggle View Paragraph */
-  .auth-box p.toggle-view {
-    text-align: center;
-    font-size: 0.875rem;
-    margin-top: 1.75rem; /* Tăng khoảng cách */
-    margin-bottom: 0;
-    color: #495057;
-  }
-  .auth-box p.toggle-view .link-button {
-    font-size: inherit; /* Giữ kích thước font */
-    display: inline; /* Hiển thị inline với text */
-    padding: 0 0.25rem; /* Padding nhỏ */
-  }
-  .auth-box p.toggle-view a.link-button { /* Style riêng cho thẻ a nếu dùng */
-     color: #3f4096;
-  }
-  .auth-box p.toggle-view a.link-button:hover {
-     color: #31327a;
-     text-decoration: underline;
-  }
-  
-  
-  /* --- Divider Styling --- */
-  .divider {
-    margin: 1.75rem 0; /* Tăng khoảng cách */
-    text-align: center;
-    font-size: 0.75rem; /* Nhỏ hơn */
-    color: #adb5bd; /* Xám nhạt hơn */
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-    text-transform: uppercase;
-  }
-  
-  .divider::before,
-  .divider::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: calc(50% - 25px); /* Điều chỉnh độ rộng đường kẻ */
-    height: 1px;
-    background-color: #dee2e6; /* Màu đường kẻ nhạt hơn */
-  }
-  
-  .divider::before {
-    left: 0;
-  }
-  
-  .divider::after {
-    right: 0;
-  }
-  
-  /* --- Google Login Button --- */
-  .google-login-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.75rem 1rem; /* Đồng bộ padding */
-    background-color: #ffffff; /* Nền trắng */
-    color: #495057; /* Màu chữ xám */
-    border: 1px solid #ced4da; /* Border xám nhạt */
-    font-weight: 500; /* Normal weight */
-    font-size: 0.9rem; /* Hơi nhỏ hơn nút chính */
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    text-transform: none; /* Không viết hoa */
-    letter-spacing: normal;
-  }
-  
-  .google-login-button:hover {
-    background-color: #f8f9fa; /* Nền hơi xám khi hover */
-    border-color: #adb5bd;
-    transform: none; /* Không cần hiệu ứng nhấc */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.07);
-  }
-  
-  .google-login-button:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    background-color: #e9ecef;
-  }
-  
-  .google-login-button .google-icon {
-    width: 1.1rem; /* Kích thước icon */
-    height: 1.1rem;
-    margin-right: 0.75rem;
-  }
-  
-  
-  /* --- Error and Success Messages --- */
-  .message-box {
-    padding: 0.8rem 1rem;
-    border-radius: 0.375rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    font-size: 0.9rem;
-    border-left: 4px solid; /* Thêm viền trái để nhấn mạnh */
-  }
-  
-  .message-box span {
-    display: block;
-  }
-  
-  .message-box .close-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    background: none;
-    border: none;
-    padding: 0.25rem;
-    cursor: pointer;
-    line-height: 1;
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-  }
-  .message-box .close-button:hover {
-      opacity: 1;
-  }
-  
-  .message-box .close-button svg {
-    width: 1.1rem;
-    height: 1.1rem;
-    display: block;
-  }
-  
-  /* Error Message Specifics */
-  .error-message {
-    background-color: #fef2f2; /* Đỏ rất nhạt */
-    border-color: #ef4444; /* Màu border đỏ */
-    color: #991b1b; /* Màu chữ đỏ đậm */
-  }
-  .error-message .close-button svg {
-    fill: #b91c1c;
-  }
-  
-  /* Success Message Specifics */
-  .success-message {
-    background-color: #f0fdf4; /* Xanh lá rất nhạt */
-    border-color: #22c55e; /* Màu border xanh lá */
-    color: #15803d; /* Màu chữ xanh lá đậm */
-  }
-  .success-message .close-button svg {
-    fill: #16a34a;
-  }
+  .auth-box select { font-size: 1em; padding: 12px 15px 12px 40px; }
+  .student-register-submit-btn { font-size: 1.05em; padding: 12px 15px; }
+  .google-login-button { font-size: 1em; padding: 11px 15px; }
+  .student-register-icon { left: 12px; font-size: 0.9em; }
+  .auth-box select { background-position: right 15px center; padding-right: 40px; }
+  body { padding: 10px; }
+}

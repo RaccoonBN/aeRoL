@@ -1,0 +1,310 @@
+/* src/RegisterPage.css */
+
+/* --- Base & Global Styles --- */
+:root {
+    --accent-color: #3f4096; /* Primary action color */
+    --accent-color-dark: #31327a;
+    --accent-color-light: #a9aadc;
+    --text-dark: #1c1e21;
+    --text-medium: #606770;
+    --text-light: #888;
+    --border-light: #dde1e6; /* Softer border */
+    --background-main: #f0f2f5;
+    --background-box: #ffffff;
+    --background-disabled: #e9ecef;
+    --error-bg: #f8d7da;
+    --error-text: #721c24;
+    --error-border: #f5c6cb;
+    --success-bg: #d4edda;
+    --success-text: #155724;
+    --success-border: #c3e6cb;
+    --focus-shadow-color: rgba(63, 64, 150, 0.25);
+  }
+  
+  /* Apply box-sizing globally */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Common system font stack */
+
+  }
+  
+  /* --- Shared Auth Container --- */
+  .auth-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* --- Auth Box Styling --- */
+  .auth-box {
+    background-color: var(--background-box);
+    padding: 35px 45px; /* Slightly more padding */
+    border-radius: 10px; /* Softer corners */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0,0,0,0.05); /* Softer shadow */
+    width: 100%;
+    text-align: center;
+  }
+  
+  /* Specific width for the student register box */
+  .student-register-box {
+    max-width: 480px;
+  }
+  
+  /* --- Logo --- */
+  .student-register-logo-area {
+    margin-bottom: 30px; /* More space below logo */
+  }
+  
+  .student-register-logo {
+    max-height: 55px; /* Slightly larger */
+    width: auto;
+  }
+  
+  /* --- Typography --- */
+  .student-register-box h2 {
+    margin-top: 0;
+    margin-bottom: 15px; /* More space below heading */
+    color: var(--text-dark);
+    font-size: 1.8em; /* Slightly larger heading */
+    font-weight: 600;
+  }
+  
+  /* Default paragraph style within the box */
+  .student-register-box p {
+    margin-bottom: 25px; /* Standard bottom margin for paragraphs */
+    color: var(--text-medium);
+    font-size: 1em; /* Standard font size */
+    line-height: 1.5;
+  }
+  
+  /* Specific style for the info text */
+  .student-register-info-text {
+    font-size: 0.9em;
+    font-style: normal; /* Remove italic if not desired */
+    margin-bottom: 30px; /* More space before form fields */
+    color: var(--text-medium); /* Less aggressive color */
+    /* border-left: 3px solid var(--accent-color); Optional accent line */
+    /* padding-left: 10px; */
+  }
+  
+  /* --- Message Boxes (Error/Success) --- */
+  .message-box {
+    padding: 12px 18px;
+    margin-bottom: 25px; /* Consistent spacing */
+    border-radius: 6px; /* Match input radius */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.95em;
+    border: 1px solid transparent;
+    text-align: left;
+  }
+  
+  .message-box span {
+    flex-grow: 1;
+  }
+  
+  .error-message {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border-color: var(--error-border);
+  }
+  
+  .success-message {
+    background-color: var(--success-bg);
+    color: var(--success-text);
+    border-color: var(--success-border);
+  }
+  
+  .message-close-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2em; /* Slightly larger */
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 0 0 15px; /* Only padding left */
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    line-height: 1; /* Align better vertically */
+  }
+  
+  .message-close-btn:hover {
+    opacity: 0.9;
+  }
+  
+  /* --- Form Elements --- */
+  .student-register-form {
+      margin-top: 10px; /* Space between messages/info and form */
+  }
+  
+  .student-register-input-group {
+    position: relative;
+    margin-bottom: 20px; /* Consistent spacing */
+    width: 100%;
+  }
+  
+  .student-register-icon {
+    position: absolute;
+    left: 15px; /* Slightly more inset */
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light); /* Use variable */
+    font-size: 1em;
+    z-index: 1;
+    pointer-events: none; /* Icon shouldn't intercept clicks */
+  }
+  
+  /* Common Input & Select Styling */
+  .student-register-box input[type="text"],
+  .student-register-box input[type="email"],
+  .student-register-box input[type="password"],
+  .student-register-box select {
+    width: 100%;
+    padding: 13px 18px 13px 45px; /* Adjust padding for icon and softer feel */
+    border: 1px solid var(--border-light); /* Softer border color */
+    border-radius: 6px; /* Softer corners */
+    font-size: 1em;
+    color: var(--text-dark);
+    background-color: var(--background-box);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+  
+  .student-register-box select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23a0aec0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* Slightly lighter arrow */
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 18px auto;
+    padding-right: 45px; /* Ensure space for arrow */
+    cursor: pointer;
+  }
+  
+  /* Focus States */
+  .student-register-box input:focus,
+  .student-register-box select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px var(--focus-shadow-color); /* More prominent focus glow */
+    /* background-color: #f8f9fa; /* Optional subtle bg change on focus */
+  }
+  
+  /* Disabled States */
+  .student-register-box input:disabled,
+  .student-register-box select:disabled {
+    background-color: var(--background-disabled);
+    cursor: not-allowed;
+    opacity: 0.7;
+    border-color: var(--border-light); /* Keep border consistent */
+    box-shadow: none; /* Remove focus shadow if disabled */
+  }
+  
+  /* --- Submit Button --- */
+  .student-register-submit-btn {
+    width: 100%;
+    padding: 13px 20px; /* Match input padding */
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    border-radius: 6px; /* Match input radius */
+    font-size: 1.1em;
+    font-weight: 600; /* Bolder */
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    margin-top: 15px; /* Space above button */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .student-register-submit-btn:hover:not(:disabled) {
+    background-color: var(--accent-color-dark);
+    box-shadow: 0 4px 8px rgba(63, 64, 150, 0.2); /* Enhanced shadow on hover */
+  }
+  
+  .student-register-submit-btn:active:not(:disabled) {
+      transform: scale(0.98); /* Click feedback */
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Reduce shadow on click */
+  }
+  
+  .student-register-submit-btn:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--focus-shadow-color); /* Focus ring like inputs */
+  }
+  
+  .student-register-submit-btn:disabled {
+    background-color: var(--accent-color-light);
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none; /* No shadow when disabled */
+  }
+  
+  /* --- Link to Login --- */
+  .student-register-login-link-section {
+    margin-top: 30px; /* More space above link */
+    font-size: 0.95em;
+    color: var(--text-medium);
+  }
+  
+  .student-register-login-link {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit;
+    font-weight: 500; /* Slightly bolder */
+    transition: color 0.2s ease;
+  }
+  
+  .student-register-login-link:hover,
+  .student-register-login-link:focus {
+    color: var(--accent-color-dark);
+    text-decoration: underline;
+    outline: none;
+  }
+  
+  /* --- Responsive Adjustments --- */
+  @media (max-width: 520px) {
+    .auth-box.student-register-box {
+      max-width: 100%; /* Use full width available within padding */
+      padding: 25px 30px;
+      box-shadow: none; /* Simpler on mobile */
+    }
+    .student-register-box h2 {
+      font-size: 1.6em;
+    }
+    body {
+      padding: 0; /* Remove body padding on mobile if box is full width */
+      align-items: flex-start; /* Align box to top */
+      padding-top: 20px; /* Add some top padding back */
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .auth-box.student-register-box {
+      padding: 25px 20px;
+    }
+    .student-register-box input[type="text"],
+    .student-register-box input[type="email"],
+    .student-register-box input[type="password"],
+    .student-register-box select {
+      font-size: 1em; /* Keep font size readable */
+      padding: 12px 15px 12px 40px; /* Slightly reduce padding */
+    }
+     .student-register-submit-btn {
+      font-size: 1.05em;
+      padding: 12px 15px;
+     }
+     .student-register-icon {
+         left: 12px;
+         font-size: 0.9em;
+     }
+     .student-register-box select {
+          background-position: right 15px center;
+          padding-right: 40px;
+     }
+  }
